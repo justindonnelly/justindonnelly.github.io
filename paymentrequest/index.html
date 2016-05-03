@@ -96,16 +96,18 @@
 
     function toDictionary(addr) {
       var result = {};
-      result.regionCode = addr.regionCode;
-      result.administrativeArea = addr.administrativeArea;
-      result.locality = addr.locality;
-      result.dependentLocality = addr.dependentLocality;
-      result.addressLine = addr.addressLine;
-      result.postalCode = addr.postalCode;
-      result.sortingCode = addr.sortingCode;
-      result.languageCode = addr.languageCode;
-      result.organization = addr.organization;
-      result.recipient = addr.recipient;
+      if (result) {
+        result.regionCode = addr.regionCode;
+        result.administrativeArea = addr.administrativeArea;
+        result.locality = addr.locality;
+        result.dependentLocality = addr.dependentLocality;
+        result.addressLine = addr.addressLine;
+        result.postalCode = addr.postalCode;
+        result.sortingCode = addr.sortingCode;
+        result.languageCode = addr.languageCode;
+        result.organization = addr.organization;
+        result.recipient = addr.recipient;
+      }
       return result;
     }
 
