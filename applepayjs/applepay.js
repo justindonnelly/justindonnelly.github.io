@@ -52,10 +52,12 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
       currencyCode: 'USD',
       supportedNetworks: ['visa', 'masterCard'],
       merchantCapabilities: ['supports3DS'],
-      total: { label: 'Your Label', amount: '155.00' },
+      requiredShippingAddressFields: ['postalAddress'],
+      total: { label: 'Donation amount', amount: '155.00' },
     }
     var session = new ApplePaySession(1, request);
-    session.begin()
+    session.begin();
+    /*
         .then(function(instrumentResponse) {
           window.setTimeout(function() {
             instrumentResponse.complete(true)
@@ -74,6 +76,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
         .catch(function(err) {
           error(err.message);
         });
+    */
   } catch (e) {
     error('Developer mistake: \'' + e.message + '\'');
   }
@@ -81,7 +84,8 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
 
 document.addEventListener('DOMContentLoaded', function () {
   if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
-    document.getElementById('apple-pay-button').addEventListener('click', onBuyClicked);
+    document.getElementById('apple-pay-button')
+        .addEventListener('click', onBuyClicked);
     document.getElementById('apple-pay-button').hidden = false;
   } else {
     document.getElementById('unavailable-message').hidden = false;
