@@ -55,7 +55,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
       total: { label: 'Your Label', amount: '155.00' },
     }
     var session = new ApplePaySession(1, request);
-    session.show()
+    session.begin()
         .then(function(instrumentResponse) {
           window.setTimeout(function() {
             instrumentResponse.complete(true)
@@ -81,7 +81,9 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
 
 document.addEventListener('DOMContentLoaded', function () {
   if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
-    document.querySelector('button').addEventListener('click', onBuyClicked);
-    document.querySelector('button').hidden = false;
+    document.getElementById('apple-pay-button').addEventListener('click', onBuyClicked);
+    document.getElementById('apple-pay-button').hidden = false;
+  } else {
+    document.getElementById('unavailable-message').hidden = false;
   }
 });
