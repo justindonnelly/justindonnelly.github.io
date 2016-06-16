@@ -5,7 +5,7 @@
 /**
  * Launches payment request that does not require shipping.
  */
-function onBuyClicked() {  // eslint-disable-line no-unused-vars
+function onPayClicked() {  // eslint-disable-line no-unused-vars
   /*
   var supportedInstruments = [
     {
@@ -57,7 +57,6 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
     }
 
     var session = new ApplePaySession(1, request);
-    session.begin();
 
     session.onvalidatemerchant = function(event) {
       performValidation(event.validationURL)
@@ -74,6 +73,8 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
             document.getElementById('contents').innerHTML = 'Thank you!';
           });
     }
+
+    session.begin();
 
     /*
         .then(function(instrumentResponse) {
@@ -101,11 +102,17 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
-    document.getElementById('apple-pay-button')
-        .addEventListener('click', onBuyClicked);
-    document.getElementById('apple-pay-button').hidden = false;
-  } else {
-    document.getElementById('unavailable-message').hidden = false;
+  if (window.ApplePaySession) {
+    var merchantId = 'merchant.io.github.justindonnelly';
+    ApplePaySession.canMakePaymentsWithActiveCard(merchantId)
+        .then(function(canMakePayments) {
+          if (canMakePayments) {
+            document.getElementById('apple-pay-button')
+                .addEventListener('click', onPayClicked);
+            document.getElementById('apple-pay-button').hidden = false;
+            return;
+          }
+        });
   }
+  document.getElementById('unavailable-message').hidden = false;
 });

@@ -45,6 +45,7 @@ div {
   background-repeat: no-repeat;
   background-size: 100% calc(60% + 2px);
   border-radius: 5px;
+  border: 1px solid black;
   box-sizing: border-box;
   height: 30px;
   margin: 5px auto;
