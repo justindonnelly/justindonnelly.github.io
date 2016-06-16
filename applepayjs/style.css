@@ -43,7 +43,7 @@ div {
   background-image: -webkit-named-image(apple-pay-logo-white);
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-size: 100% calc(60% + 4px);
+  background-size: 100% calc(60% + 2px);
   border-radius: 5px;
   float: left;
   height: 30px;

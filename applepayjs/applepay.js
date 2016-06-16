@@ -2,6 +2,18 @@
 /* global error:false */
 /* global PaymentRequest:false */
 
+function performValidation(url) {
+  return new Promise(function(resolve, reject) {
+    resolve(true);
+  });
+}
+
+function sendPaymentToken(token) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
 /**
  * Launches payment request that does not require shipping.
  */
