@@ -47,6 +47,6 @@ div {
   border-radius: 5px;
   float: left;
   height: 30px;
-  margin: 0px;
+  margin: 0px 0px 10px 0px;
   width: 100px;
 }
