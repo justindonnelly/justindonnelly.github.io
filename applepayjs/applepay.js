@@ -44,21 +44,28 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
     ]
   };
 
-  if (!window.PaymentRequest) {
-    error('PaymentRequest API is not supported.');
+  if (!ApplePaySession) {
+    error('Apple Pay JS is not supported.');
     return;
   }
 
   try {
-    var request = new PaymentRequest(supportedInstruments, details);
-    request.show()
+    var request = {
+      countryCode: 'US',
+      currencyCode: 'USD',
+      supportedNetworks: ['visa', 'masterCard'],
+      merchantCapabilities: ['supports3DS'],
+      total: { label: 'Your Label', amount: '155.00' },
+    }
+    var session = new ApplePaySession(1, request);
+    session.show()
         .then(function(instrumentResponse) {
           window.setTimeout(function() {
             instrumentResponse.complete(true)
                 .then(function() {
                   done(
                       'Thank you!', instrumentResponse.shippingAddress,
-                      request.shippingOption, instrumentResponse.methodName,
+                      session.shippingOption, instrumentResponse.methodName,
                       instrumentResponse.details,
                       instrumentResponse.totalAmount);
                 })
