@@ -1,4 +1,5 @@
-var merchantIdentifier = 'merchant.io.github.justindonnelly';
+// var merchantIdentifier = 'merchant.io.github.justindonnelly';
+var merchantIdentifier = 'merchant.com.example';
 
 function showApplePayButton() {
   document.getElementById('apple-pay-button')
