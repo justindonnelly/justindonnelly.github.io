@@ -1,3 +1,5 @@
+var merchantIdentifier = = 'merchant.io.github.justindonnelly';
+
 function showApplePayButton() {
   document.getElementById('apple-pay-button')
       .addEventListener('click', onPayClicked);
@@ -11,7 +13,7 @@ function showUnavailableMessage() {
 function performValidation(url) {
   return new Promise(function(resolve, reject) {
     var merchantSession = {};
-    merchantSession.merchantIdentifier = 'merchant.io.github.justindonnelly';
+    merchantSession.merchantIdentifier = merchantIdentifier;
     merchantSession.merchantSessionIdentifier = 'fake-session-id';
     merchantSession.nonce = 'fake-nonce';
     resolve(merchantSession);
@@ -43,7 +45,7 @@ function onPayClicked() {  // eslint-disable-line no-unused-vars
     session.onvalidatemerchant = function(event) {
       performValidation(event.validationURL)
           .then(function(merchantSession) {
-            sesion.completeMerchantValidation(merchantSession);
+            session.completeMerchantValidation(merchantSession);
           });
     }
 
@@ -52,8 +54,12 @@ function onPayClicked() {  // eslint-disable-line no-unused-vars
           .then(function(success) {
             session.completePayment(success ? ApplePaySession.STATUS_SUCCESS :
                                               ApplePaySession.STATUS_FAILURE);
-            document.getElementById('contents').innerHTML = 'Thank you!';
+            info('Thank you!');
           });
+    }
+
+    session.oncancel = function(event) {
+      error("You cancelled. Sorry it didn't work out.");
     }
 
     session.begin();
@@ -64,8 +70,7 @@ function onPayClicked() {  // eslint-disable-line no-unused-vars
 
 document.addEventListener('DOMContentLoaded', function () {
   if (window.ApplePaySession) {
-    var merchantId = 'merchant.io.github.justindonnelly';
-    ApplePaySession.canMakePaymentsWithActiveCard(merchantId)
+    ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier)
         .then(function(canMakePayments) {
           if (canMakePayments) {
             showApplePayButton();
