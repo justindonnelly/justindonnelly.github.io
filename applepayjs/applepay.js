@@ -6,6 +6,7 @@
  * Launches payment request that does not require shipping.
  */
 function onBuyClicked() {  // eslint-disable-line no-unused-vars
+  /*
   var supportedInstruments = [
     {
       supportedMethods: ['https://android.com/pay'],
@@ -43,11 +44,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
       }
     ]
   };
-
-  if (!window.ApplePaySession) {
-    error('Apple Pay JS is not supported.');
-    return;
-  }
+  */
 
   try {
     var request = {
@@ -83,5 +80,8 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('button').addEventListener('click', onBuyClicked);
+  if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
+    document.querySelector('button').addEventListener('click', onBuyClicked);
+    document.querySelector('button').hidden = false;
+  }
 });
