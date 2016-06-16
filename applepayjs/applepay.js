@@ -102,17 +102,21 @@ function onPayClicked() {  // eslint-disable-line no-unused-vars
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  var canUseApplePay = false;
+
   if (window.ApplePaySession) {
     var merchantId = 'merchant.io.github.justindonnelly';
     ApplePaySession.canMakePaymentsWithActiveCard(merchantId)
         .then(function(canMakePayments) {
-          if (canMakePayments) {
-            document.getElementById('apple-pay-button')
-                .addEventListener('click', onPayClicked);
-            document.getElementById('apple-pay-button').hidden = false;
-            return;
-          }
+          canUseApplePay = canMakePayments;
         });
   }
-  document.getElementById('unavailable-message').hidden = false;
+
+  if (true || canUseApplePay) {
+    document.getElementById('apple-pay-button')
+        .addEventListener('click', onPayClicked);
+    document.getElementById('apple-pay-button').hidden = false;
+  } else {
+    document.getElementById('unavailable-message').hidden = false;
+  }
 });
