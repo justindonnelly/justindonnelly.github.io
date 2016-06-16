@@ -44,7 +44,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
     ]
   };
 
-  if (!ApplePaySession) {
+  if (!window.ApplePaySession) {
     error('Apple Pay JS is not supported.');
     return;
   }
