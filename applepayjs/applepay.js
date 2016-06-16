@@ -81,3 +81,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
     error('Developer mistake: \'' + e.message + '\'');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelector('button').addEventListener('click', onBuyClicked);
+});
