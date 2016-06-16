@@ -10,7 +10,11 @@ function showUnavailableMessage() {
 
 function performValidation(url) {
   return new Promise(function(resolve, reject) {
-    resolve("fake-session");
+    var merchantSession = {};
+    merchantSession.merchantIdentifier = 'merchant.io.github.justindonnelly';
+    merchantSession.merchantSessionIdentifier = 'fake-session-id';
+    merchantSession.nonce = 'fake-nonce';
+    resolve(merchantSession);
   });
 }
 
