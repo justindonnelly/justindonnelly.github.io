@@ -41,12 +41,11 @@ div {
 #apple-pay-button {
   background-color: black;
   background-image: -webkit-named-image(apple-pay-logo-white);
-  background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-size: 100% calc(60% + 2px);
+  background-size: 100% 100%;
   border-radius: 5px;
   float: left;
-  height: 30px;
+  height: 35px;
   margin: 0px;
   width: 100px;
 }
