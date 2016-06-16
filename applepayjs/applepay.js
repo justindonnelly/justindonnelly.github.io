@@ -4,13 +4,13 @@
 
 function performValidation(url) {
   return new Promise(function(resolve, reject) {
-    resolve(true);
+    resolve("fake-session");
   });
 }
 
 function sendPaymentToken(token) {
   return new Promise(function(resolve, reject) {
-    resolve();
+    resolve(true);
   });
 }
 
@@ -65,7 +65,7 @@ function onPayClicked() {  // eslint-disable-line no-unused-vars
       supportedNetworks: ['visa', 'masterCard'],
       merchantCapabilities: ['supports3DS'],
       requiredShippingAddressFields: ['postalAddress'],
-      total: { label: 'total', amount: '155.00' },
+      total: { label: 'Fake Merchant', amount: '155.00' },
     }
 
     var session = new ApplePaySession(1, request);
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
   }
 
-  if (true || canUseApplePay) {
+  if (canUseApplePay) {
     document.getElementById('apple-pay-button')
         .addEventListener('click', onPayClicked);
     document.getElementById('apple-pay-button').hidden = false;
