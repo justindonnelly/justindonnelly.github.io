@@ -53,10 +53,28 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
       supportedNetworks: ['visa', 'masterCard'],
       merchantCapabilities: ['supports3DS'],
       requiredShippingAddressFields: ['postalAddress'],
-      total: { label: 'Donation amount', amount: '155.00' },
+      total: { label: 'total', amount: '155.00' },
     }
+
     var session = new ApplePaySession(1, request);
     session.begin();
+
+    session.onvalidatemerchant = function(event) {
+      performValidation(event.validationURL)
+          .then(function(merchantSession) {
+            sesion.completeMerchantValidation(merchantSession);
+          });
+    }
+
+    session.onpaymentauthorized = function(event) {
+      sendPaymentToken(event.payment.token)
+          .then(function(success) {
+            session.completePayment(success ? ApplePaySession.STATUS_SUCCESS :
+                                              ApplePaySession.STATUS_FAILURE);
+            document.getElementById('contents').innerHTML = 'Thank you!';
+          });
+    }
+
     /*
         .then(function(instrumentResponse) {
           window.setTimeout(function() {

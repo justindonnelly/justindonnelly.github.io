@@ -37,3 +37,20 @@ div {
 .info {
     color: green;
 }
+
+#apple-pay-button {
+  background-color: white;
+  background-image: -webkit-named-image(apple-pay-logo-black);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100% calc(60% + 2px);
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 30px;
+  margin: 5px auto;
+  min-height: 30px;
+  min-width: 100px;
+  padding: 0px;
+  transition: background-color .15s;
+  width: 70%;
+}
