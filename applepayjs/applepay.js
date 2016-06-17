@@ -38,8 +38,6 @@ function onPayClicked() {  // eslint-disable-line no-unused-vars
       supportedNetworks: ['visa', 'masterCard'],
       merchantCapabilities: ['supports3DS'],
       requiredShippingAddressFields: ['postalAddress'],
-      subtotal: { amount: '190.00' },
-      discount: { amount: '-35.00' },
       total: { label: 'Fake Merchant', amount: '155.00' },
     }
 
