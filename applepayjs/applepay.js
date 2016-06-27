@@ -17,6 +17,9 @@ function performValidation(url) {
     merchantSession.merchantIdentifier = merchantIdentifier;
     merchantSession.merchantSessionIdentifier = 'fake-session-id';
     merchantSession.nonce = 'fake-nonce';
+    merchantSession.domainName = 'example.com';
+    merchantSession.epochTimestamp = '1467051059';
+    merchantSession.signature = 'fake-signature';
     resolve(merchantSession);
   });
 }
