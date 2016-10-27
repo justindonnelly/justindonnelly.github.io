@@ -101,7 +101,8 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
 
     request.show()
         .then(function(instrumentResponse) {
-          alert('resolver called, about to set timeout');
+          //alert('resolver called, about to set timeout');
+          throw new Error('ABOUT TO DO TIMEOUT');
           window.setTimeout(function() {
             instrumentResponse.complete('success')
                 .then(function() {
