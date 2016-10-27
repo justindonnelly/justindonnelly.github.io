@@ -101,7 +101,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
 
     request.show()
         .then(function(instrumentResponse) {
-          //window.setTimeout(function() {
+          window.setTimeout(function() {
             instrumentResponse.complete('success')
                 .then(function() {
                   done('Thank you!', instrumentResponse);
@@ -109,7 +109,7 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
                 .catch(function(err) {
                   error(err.message);
                 });
-          //}, 2000);
+          }, 2000);
         })
         .catch(function(err) {
           error(err.message);
