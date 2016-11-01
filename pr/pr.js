@@ -31,15 +31,15 @@ function onBuyClicked() {  // eslint-disable-line no-unused-vars
   ];
 
   var details = {
-    total: {label: 'Donation', amount: {currency: 'USD', value: '55.00'}},
+    total: {label: 'Original donation amount (plus here is a whole bunch of extra words)', amount: {currency: 'USD', value: '65,032,482.00'}},
     displayItems: [
-      {
-        label: 'Original donation amount',
-        amount: {currency: 'USD', value: '65.00'}
-      },
       {
         label: 'Friends and family discount',
         amount: {currency: 'USD', value: '-10.00'}
+      },
+      {
+        label: 'Total',
+        amount: {currency: 'USD', value: '55.00'}
       }
     ]
   };
